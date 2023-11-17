@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Calculadora de Eficiência de Gold Converters no Tibia</title>
+    <script>
+      function calcularEficiencia() {
+        let precoTC = document.getElementById("precoTC").value;
+        if (precoTC) {
+          atualizarResultados(precoTC);
+        }
+      }
+
+      function atualizarResultados(precoTC) {
+        const custoConverter = 5;
+        const custoAutomatico = 15;
+        const cargas = 500;
+        const valorPotencialPorCarga = 100;
+
+        const valorPotencialTotal = cargas * valorPotencialPorCarga;
+        const custoTotalGCConverter = custoConverter * precoTC;
+        const custoTotalGCAutomatico = custoAutomatico * precoTC;
+
+        const percentualPerdidoConverter =
+          (custoTotalGCConverter / valorPotencialTotal) * 100;
+        const percentualPerdidoAutomatico =
+          (custoTotalGCAutomatico / valorPotencialTotal) * 100;
+
+        const lucroRestanteConverter =
+          valorPotencialTotal - custoTotalGCConverter;
+        const lucroRestanteAutomatico =
+          valorPotencialTotal - custoTotalGCAutomatico;
+
+        document.getElementById("custoTotalGCConverter").innerHTML =
+          custoTotalGCConverter.toLocaleString();
+        document.getElementById("lucroRestanteConverter").innerHTML =
+          lucroRestanteConverter.toLocaleString();
+        document.getElementById("porcentagemGConverter").innerHTML =
+          percentualPerdidoConverter.toFixed(2);
+
+        document.getElementById("custoTotalGCAutomatico").innerHTML =
+          custoTotalGCAutomatico.toLocaleString();
+        document.getElementById("lucroRestanteAutomatico").innerHTML =
+          lucroRestanteAutomatico.toLocaleString();
+        document.getElementById("porcentagemAGConverter").innerHTML =
+          percentualPerdidoAutomatico.toFixed(2);
+      }
+    </script>
+  </head>
+  <body>
+    <h2>Calculadora de Eficiência de Gold Converters no Tibia</h2>
+
+    <label for="precoTC">Preço do Tibia Coin (em Gold Coins):</label><br />
+    <input
+      type="number"
+      id="precoTC"
+      name="precoTC"
+      onChange="calcularEficiencia()"
+    /><br /><br />
+
+    <h3>Para um conversor de gold <strong>manual</strong>.</h3>
+    <p>
+      Você teria que gastar um total de
+      <strong><span id="custoTotalGCConverter"></span></strong> gold coins.
+    </p>
+    <p>
+      E considerando que você vai converter gold coin para platinum coin, te
+      sobraria <strong><span id="lucroRestanteConverter"></span></strong> gold
+      coins.
+    </p>
+    <p>
+      O que seria uma redução de
+      <strong><span id="porcentagemGConverter"></span></strong>%
+    </p>
+    <br />
+
+    <h3>Para um conversor de gold <strong>automático</strong>.</h3>
+    <p>
+      Você teria que gastar um total de
+      <strong><span id="custoTotalGCAutomatico"></span></strong> gold coins.
+    </p>
+    <p>
+      E considerando que você vai converter gold coin para platinum coin, te
+      sobraria <strong><span id="lucroRestanteAutomatico"></span></strong> gold
+      coins.
+    </p>
+    <p>
+      O que seria uma redução de
+      <strong><span id="porcentagemAGConverter"></span></strong>%
+    </p>
+    <br />
+  </body>
+</html>
